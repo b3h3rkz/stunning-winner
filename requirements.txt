@@ -1,0 +1,5 @@
+django==1.9.2
+django-excel
+pyexcel-xlsx
+pyexcel-xls
+pyexcel-ods
