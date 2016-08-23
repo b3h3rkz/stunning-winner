@@ -10,8 +10,15 @@ margin: 25% 25% 25% 25%;
 
 table{
 width: 80%;
+background-color: yellow;
+border-radius:5px;
+margin: 50px;
 }
 
 thead{
 background-color: red;
+}
+
+th{
+text-align: left;
 }
