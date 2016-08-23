@@ -18,5 +18,5 @@ from django.contrib import admin
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^', include('Excels.urls'), name='home'),
+    url(r'^data/', include('Exstore.urls'), name='app'),
 ]

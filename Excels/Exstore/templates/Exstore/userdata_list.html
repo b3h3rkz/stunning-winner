@@ -1,8 +1,6 @@
-{% load 'base.html' %}
-{% block content %}
 <h1>user's data</h1>
 
-<tab1le>
+<table>
   <colgroup span="4"></colgroup>
   <tr>
     <th>First Name</th>
@@ -11,16 +9,15 @@
     <th>Gender</th>
     <th>Address</th>
   </tr>
-          {% for user in user_data %}
   <tr>
+
+    {% for user in user_data %}
     <td>{{user.first_name}}</td>
     <td>{{user.last_name}}</td>
     <td>{{user.age}}</td>
     <td>{{user.gender}}</td>
     <td>{{user.address}}</td>
   </tr>
-{% endfor %}
-</tab1le>
+  {% endfor %}
+</table>
 
-
-{% endblock %}

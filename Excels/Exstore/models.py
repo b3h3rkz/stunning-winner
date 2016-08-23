@@ -15,6 +15,7 @@ class UserData(models.Model):
 
     class Meta:
         verbose_name_plural = 'User Data'
+        # unique_together = ('first_name', 'last_name', 'age', 'gender', 'address',)
 
     def __str__(self):
         return self.fullname()
