@@ -7,13 +7,19 @@ from django.template import RequestContext
 import django_excel as excel
 import pyexcel_xls
 import pyexcel_xlsx
-from .models import UserData
+from .models import UserData, Log
 
 
 class UserDataList(ListView):
     model = UserData
     queryset = UserData.objects.all()
     context_object_name = 'user_data'
+
+
+class LogView(ListView):
+    model = Log
+    queryset = Log.objects.all()
+    context_object_name = 'logs'
 
 
 class Importer(forms.Form):
@@ -37,10 +43,14 @@ def save_to_db(request):
     if request.method == "POST":
         form = Importer(request.POST, request.FILES)
         if form.is_valid():
-            request.FILES['file'].save_to_database(
+            file = request.FILES['file']
+            file.save_to_database(
                 name_columns_by_row=2,
                 model=UserData,
                 mapdict=['first_name', 'last_name', 'age', 'gender', 'address'])
+            file_name = request.FILES['file'].name
+            new_log = Log(action='file_upload', message=file_name)
+            new_log.save()
             return HttpResponseRedirect(reverse('list'))
         else:
             return HttpResponseBadRequest()

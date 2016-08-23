@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+
+<table>
+    <thead>
+    <th>S/N</th>
+    <th>ACTION</th>
+    <th>FILE NAME</th>
+    <th>DATE</th>
+    </thead>
+    <tbody>
+
+{% for log in logs %}
+    <tr>
+        <td>{{log.id}}</td>
+        <td>{{log.action}}</td>
+        <td>{{log.message}}</td>
+        <td>{{log.date}}</td>
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
+
+
+
+{% endblock %}

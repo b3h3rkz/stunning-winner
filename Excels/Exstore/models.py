@@ -22,3 +22,16 @@ class UserData(models.Model):
 
     def fullname(self):
         return self.first_name + self.last_name
+
+
+class Log(models.Model):
+    LOG_ACTIONS = (
+        ('file_upload', 'file_upload'),
+    )
+    action = models.CharField(max_length=20, default='file_upload', choices=LOG_ACTIONS, verbose_name= 'action')
+    message = models.CharField(max_length=200, default='nothing')
+    date = models.DateTimeField(auto_now_add=True, verbose_name='date')
+
+    class Meta:
+        verbose_name = 'Log'
+        verbose_name_plural = 'Logs'
