@@ -1,5 +1,13 @@
+{% load static %}
+{% load staticfiles %}
+
+{% block styles %}
+<link rel="stylesheet" href="{% static 'Exstore/css/style.css' %}" />
+{% endblock %}
+
+<body>
 {% block content %}
 
 
-
 {% endblock %}
+</body>

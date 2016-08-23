@@ -1,0 +1,17 @@
+body
+{
+
+background-color: teal;
+}
+
+#upload_form{
+margin: 25% 25% 25% 25%;
+}
+
+table{
+width: 80%;
+}
+
+thead{
+background-color: red;
+}

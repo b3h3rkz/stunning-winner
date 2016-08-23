@@ -1,14 +1,21 @@
+{% extends 'base.html' %}
+{% load static %}
 <h1>user's data</h1>
 
+
+{% block content %}
+<center>
+
 <table>
-  <colgroup span="4"></colgroup>
-  <tr>
+  <thead>
+  <tr >
     <th>First Name</th>
     <th>Last Name</th>
     <th>Age</th>
     <th>Gender</th>
     <th>Address</th>
   </tr>
+  </thead>
   <tr>
 
     {% for user in user_data %}
@@ -20,4 +27,5 @@
   </tr>
   {% endfor %}
 </table>
-
+  </center>
+{% endblock %}
