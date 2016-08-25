@@ -1,0 +1,16 @@
+web:
+  build: .
+  command: python manage.py runserver 0.0.0.0:8089
+  volumes:
+    - .:/code
+  ports:
+    - "8000:8000"
+  links:
+    - db
+db:
+  image: mysql
+  environment:
+    - MYSQL_ROOT_PASSWORD=rootpassword
+    - MYSQL_USER=composetest
+    - MYSQL_PASSWORD=testpassword
+    - MYSQL_DATABASE=composetest
