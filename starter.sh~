@@ -1,8 +1,0 @@
-pip install --upgrade setuptools
-pip install -r requirements.txt
-django-admin startproject Excels
-cd Excels
-./manage.py migrate
-./manage.py createsuperuser  
-./manage.py startapp Exstore
-
