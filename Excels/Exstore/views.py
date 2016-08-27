@@ -1,13 +1,16 @@
 from django.shortcuts import render_to_response
 from django.core.urlresolvers import reverse
-from django.http import HttpResponseBadRequest, HttpResponseRedirect
+from django.http import HttpResponseBadRequest, HttpResponseRedirect, HttpResponse
 from django.views.generic import ListView
-from django import forms
 from django.template import RequestContext
 import django_excel as excel
 import pyexcel_xls
 import pyexcel_xlsx
 from .models import UserData, Log
+from .forms import Importer
+from djcelery import celery
+from .tasks import *
+
 
 
 class UserDataList(ListView):
@@ -22,38 +25,25 @@ class LogView(ListView):
     context_object_name = 'logs'
 
 
-class Importer(forms.Form):
-    file = forms.FileField()
-
-    # def clean(self):
-    #     try:
-    #         UserData.objects.get(
-    #                             first_name=self.cleaned_data['first_name'],
-    #                             last_name=self.cleaned_data['last_name'],
-    #                             age=self.cleaned_data['age'],
-    #                             gender=self.cleaned_data['gender'],
-    #                             address=self.cleaned_data['address'])
-    #         raise forms.ValidationError("Exists already!")
-    #     except UserData.DoesNotExist:
-    #         pass
-    #     return self.cleaned_data
-
-
 def save_to_db(request):
     if request.method == "POST":
         form = Importer(request.POST, request.FILES)
         if form.is_valid():
             file = request.FILES['file']
-            file.save_to_database(
-                name_columns_by_row=2,
-                model=UserData,
-                mapdict=['first_name', 'last_name', 'age', 'gender', 'address'])
+            import_data.delay(file)
             file_name = request.FILES['file'].name
             new_log = Log(action='file_upload', message=file_name)
             new_log.save()
-            return HttpResponseRedirect(reverse('list'))
+            return HttpResponseRedirect(reverse('app:list'))
         else:
             return HttpResponseBadRequest()
     else:
         form = Importer()
     return render_to_response('Exstore/upload_form.html', {'form': form}, context_instance=RequestContext(request))
+
+
+def test_celery(request):
+	result = tasks.sleeptask.delay(10)
+	result_one = tasks.sleeptask.delay(10)
+	result_two = tasks.sleeptask.delay(10)
+	return HttpResponse(result.task_id)

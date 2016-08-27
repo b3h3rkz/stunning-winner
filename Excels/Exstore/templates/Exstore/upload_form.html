@@ -1,8 +1,7 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
-
-    {% if form.errors %}
+{% if form.errors %}
         <p style="color: red;">
             Please correct the error{{ form.errors|pluralize }} below.
         </p>
@@ -12,7 +11,7 @@
     <form action="" enctype="multipart/form-data"  method="post" id="upload_form">
         <p>{{ form.as_p}}</p>
         {% csrf_token %}
-        <input type="submit" value="Upload">
+        <input type="submit" value="Upload" id="input">
     </form>
 </center>
 {% endblock %}

@@ -6,8 +6,13 @@
 {% endblock %}
 
 <body>
+<nav>
+    <ul>
+        <li><a href="{% url  'app:list' %}"><h2>Users</h2></a></li>
+        <li><a href="{% url  'app:upload' %}"><h2>Upload</h2></a></li>
+        <li><a href="{% url  'app:logs' %}"><h2>Logs</h2></a></li>
+    </ul>
+</nav>
 {% block content %}
-
-
 {% endblock %}
 </body>

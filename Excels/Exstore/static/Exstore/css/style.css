@@ -5,8 +5,14 @@ background-color: teal;
 }
 
 #upload_form{
-margin: 25% 25% 25% 25%;
+margin: 10% 25% 25% 25%;
 }
+
+#input{
+background-color:yellow;
+height:20px;
+}
+
 
 table{
 width: 80%;
@@ -21,4 +27,23 @@ background-color: red;
 
 th{
 text-align: left;
+}
+
+nav{
+display: inline-block;
+background-color:yellow;
+width:100%;
+}
+ul{
+text-decoration:none;
+decoration:none;
+}
+
+li{
+
+float:left;
+position:relative;
+color:yellow;
+margin:10px;
+
 }

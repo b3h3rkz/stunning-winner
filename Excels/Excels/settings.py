@@ -12,9 +12,14 @@ https://docs.djangoproject.com/en/1.9/ref/settings/
 
 import os
 
+
+
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
+
+
+BROKER_URL = "amqp://guest:guest@localhost:5672//"
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.9/howto/deployment/checklist/
@@ -81,6 +86,8 @@ FILE_UPLOAD_HANDLERS = ("django_excel.ExcelMemoryFileUploadHandler",
 # Database
 # https://docs.djangoproject.com/en/1.9/ref/settings/#databases
 
+
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
@@ -90,6 +97,16 @@ DATABASES = {
         'HOST': 'localhost',
     }
 }
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.mysql',
+#         'NAME': 'excel',
+#         'USER': 'root',
+#         'PASSWORD': 'pass',
+#         'HOST': 'localhost',
+#     }
+# }
 # Password validation
 # https://docs.djangoproject.com/en/1.9/ref/settings/#auth-password-validators
 
@@ -128,3 +145,10 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATIC_ROOT= os.path.join(BASE_DIR,'static/')
+
+
+
+import djcelery
+
+djcelery.setup_loader
+CELERY_RESULT_BACKEND = 'djcelery.backends.database:DatabaseBackend'

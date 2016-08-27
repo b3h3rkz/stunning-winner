@@ -15,13 +15,19 @@ class UserData(models.Model):
 
     class Meta:
         verbose_name_plural = 'User Data'
-        # unique_together = ('first_name', 'last_name', 'age', 'gender', 'address',)
+        unique_together = (('first_name', 'last_name', 'age', 'gender', 'address',),)
 
     def __str__(self):
         return self.fullname()
 
     def fullname(self):
         return self.first_name + self.last_name
+
+    # def unique_error_message(self, model_class, unique_check):
+    #     if model_class == type(self) and unique_check == ('first_name', 'last_name', 'age', 'gender', 'address',):
+    #         return 'Sorry this data already exists in the database'
+    #     else:
+    #         return super(UserData, self).unique_error_message(model_class, unique_check)
 
 
 class Log(models.Model):
