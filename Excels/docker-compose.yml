@@ -7,10 +7,10 @@ web:
     - "8089:8000"
   links:
     - db
-db:
-  image: mysql
-  environment:
-    - MYSQL_ROOT_PASSWORD=rootpassword
-    - MYSQL_USER=composetest
-    - MYSQL_PASSWORD=testpassword
-    - MYSQL_DATABASE=composetest
+#db:
+#  image: mysql
+#  environment:
+#    - MYSQL_ROOT_PASSWORD=rootpassword
+#    - MYSQL_USER=composetest
+#    - MYSQL_PASSWORD=testpassword
+#    - MYSQL_DATABASE=composetest
